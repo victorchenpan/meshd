@@ -28,7 +28,7 @@ meshd-objs += \
 	src/models/health-client.o
 
 # interfaces
-meshd-objs += src/interfaces/cmdline.c
+meshd-objs += src/interfaces/cmdline.o
 
 bluez-objs = \
 	src/external/bluez/io-glib.o \
@@ -60,6 +60,7 @@ $(bluez-sharedlib): $(bluez-objs)
 	$(AR) rcs $@ $^
 
 clean:
-	rm -R -f src/*~ src/*.o meshd
-	rm -R -f src/external/bluez/*~ src/external/bluez/*.o meshd
+	rm -Rf $(meshd-objs) $(test-objs) $(bluez-objs) meshd
+	#rm -R -f src/*~ src/*.o meshd
+	#rm -R -f src/external/bluez/*~ src/external/bluez/*.o meshd
 	rm -R -f src/external/*.a
